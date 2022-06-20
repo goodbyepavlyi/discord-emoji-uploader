@@ -1,0 +1,42 @@
+{
+  "name": "discord-emoji-uploader",
+  "version": "1.0.0",
+  "description": "A project that was made out of boredom and familiarity with the Discord API",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodbyepavlyi/discord-emoji-uploader.git"
+  },
+  "keywords": [
+    "discord",
+    "discordapi",
+    "api",
+    "emoji",
+    "upload",
+    "uploader",
+    "downloader",
+    "emojidownload",
+    "emojidownloader",
+    "emojiuploader"
+  ],
+  "author": "goodbyepavlyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goodbyepavlyi/discord-emoji-uploader/issues"
+  },
+  "homepage": "https://github.com/goodbyepavlyi/discord-emoji-uploader#readme",
+  "scripts": {
+    "help": "node app.js help",
+    "download": "node app.js download",
+    "reset": "node app.js reset",
+    "remove": "node app.js remove",
+    "list": "node app.js list",
+    "upload": "node app.js upload"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "colors": "^1.4.0",
+    "cross-fetch": "^3.1.5",
+    "path": "^0.12.7"
+  }
+}
