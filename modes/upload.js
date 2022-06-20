@@ -12,10 +12,6 @@ const resolvePath = require('../utils/resolvePath')
 const uploadEmoji = require('../utils/uploadEmoji')
 
 module.exports = async (arguments) => {
-    const mode = arguments[0]
-    if (!(mode == 'all' || mode == 'gradually'))
-        return console.error(`Start the program using ${colors.bgGrey('npm run upload <all/gradually>')}!\n${colors.bgGrey('gradually')} = After the maximum size of emoticons has been reached in one guild, the rest will be uploaded to other guilds.\n${colors.bgGrey('all')} = All emoticons are uploaded to the guilds`)
-
     console.log('Loading the configuration..')
     const { token } = require(resolvePath('../config/global.json'))
     const { guilds } = require(resolvePath('../config/upload.json'))
