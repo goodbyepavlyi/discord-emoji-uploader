@@ -15,14 +15,14 @@ const uploadEmoji = require('../utils/uploadEmoji')
 async function upload(index, emoji, name, emojiName, size, image, currentGuild, token, emojis, data) {
     return new Promise((resolve, reject) => {
         uploadEmoji(emojiName, size, image, currentGuild, token).then(async (json) => {
-            const { id, animated } = json
+            const { name: discordEmojiName, id, animated } = json
 
             if (emojis instanceof Array) emojis = emojis.filter(item => item !== emoji)
             else delete emojis[emoji]
 
             console.log(`${colors.magenta(name)} uploaded in ${colors.magenta(currentGuild)}!`)
 
-            data[name] = `<${animated ? 'a' : ''}:${name}:${id}>`
+            data[name] = `<${animated ? 'a' : ''}:${discordEmojiName}:${id}>`
 
             if (index == (emojis.length - 1)) {
                 console.log(`All done`)
