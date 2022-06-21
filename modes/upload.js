@@ -131,7 +131,7 @@ module.exports = async (arguments) => {
 
         console.log(`${colors.white.bgWhite('------------------------------')}\nUploading ${colors.magenta(emoji)} to ${colors.magenta(currentGuild)}..`)
         
-        await upload(index, emoji, rawName, name, size, image, currentGuild, token, emojis, data).then(() => { }).catch(async (error) => {
+        await upload(index, emoji, name, name, size, image, currentGuild, token, emojis, data).then(() => { }).catch(async (error) => {
             if (error.ratelimit) {
                 guildId++
                 if (!guilds[guildId]) {
@@ -142,7 +142,7 @@ module.exports = async (arguments) => {
                 currentGuild = guilds[guildId]
             }
 
-            await upload(index, emoji, rawName, name, size, image, currentGuild, token, emojis, data).catch((error) => error)
+            await upload(index, emoji, name, name, size, image, currentGuild, token, emojis, data).catch((error) => error)
         })
     }
 
