@@ -44,7 +44,7 @@ if (!modes.includes(mode) || mode == 'help') {
 
 console.log(`Checking for any missing files..`)
 prepare(mode).then(() => {
-    console.log(`Starting using the ${colors.bgGrey(mode.toUpperCase())} mode!\n${colors.bgRed('------------------------------')}`)
+    console.log(`Starting using the ${colors.magenta(mode.toUpperCase())} mode!\n${colors.white.bgWhite('------------------------------')}`)
     const arguments = process.argv.splice(3)
     require(`./modes/${mode.toLowerCase()}`)(arguments)
 }).catch(error => {

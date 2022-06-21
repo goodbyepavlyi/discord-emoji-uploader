@@ -20,14 +20,14 @@ module.exports = async (arguments) => {
     await getEmojis(guildId, token).then((data) => {
         console.log(data.map(({ name, id, animated }) => {
             const code = `<${animated ? 'a' : ''}:${name}:${id}>`
-            return `${colors.bgGrey('Name:')} ${name} ${colors.bgGrey('ID:')} ${id} ${colors.bgGrey('Code:')} ${code}`
+            return `${colors.magenta('Name:')} ${name} ${colors.magenta('ID:')} ${id} ${colors.magenta('Code:')} ${code}`
         }).join(`\n`))
-        console.log(`${colors.bgGrey(data.length)} emoji(s) found!`)
+        console.log(`${colors.magenta(data.length)} emoji(s) found!`)
     }).catch(({ code: errorCode, message, errors }) => {
         const errorMessages = [`${colors.bgRed('Discord API has returned an error!')}`]
 
-        if (errorCode) errorMessages.push(`${colors.bgGrey('Error Code')} ${errorCode}`)
-        if (message) errorMessages.push(`${colors.bgGrey('Message')} ${message}`)
+        if (errorCode) errorMessages.push(`${colors.magenta('Error Code')} ${errorCode}`)
+        if (message) errorMessages.push(`${colors.magenta('Message')} ${message}`)
         if (errors) Object.keys(errors).map(key => errors[key]._errors.map(error => errorMessages.push(error.message)))
 
         if (errorCode == 10004) errorMessages.push(`The provided Guild does not exist!`)
