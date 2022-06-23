@@ -3,7 +3,7 @@
 */
 const fs = require('fs')
 const path = require('path')
-const readline = require("readline")
+const readline = require('readline')
 const colors = require('colors/safe')
 
 /*
@@ -12,13 +12,30 @@ const colors = require('colors/safe')
 const resolvePath = require('../utils/resolvePath')
 const uploadEmoji = require('../utils/uploadEmoji')
 
-async function upload(index, emoji, name, emojiName, size, image, currentGuild, token, emojis, data) {
+const DISCORD_REGEX = /[^a-zA-Z0-9_]/g
+
+/**
+ * 
+ * @param {number} index 
+ * @param {string} filepath 
+ * @param {string} name 
+ * @param {string} emojiName 
+ * @param {number} size 
+ * @param {Buffer} image 
+ * @param {number} currentGuild 
+ * @param {string} token 
+ * @param {object} data 
+ */
+async function upload(index, filepath, name, emojiName, size, image, currentGuild, token, emojis, data) {
     return new Promise((resolve, reject) => {
+        emojiName = emojiName.replaceAll(DISCORD_REGEX, '')
+        if (emojiName.length > 32) emojiName = emojiName.substring(0, 32)
+        
         uploadEmoji(emojiName, size, image, currentGuild, token).then(async (json) => {
             const { name: discordEmojiName, id, animated } = json
 
-            if (emojis instanceof Array) emojis = emojis.filter(item => item !== emoji)
-            else delete emojis[emoji]
+            if (emojis instanceof Array) emojis = emojis.filter(item => item !== filepath)
+            else delete emojis[filepath]
 
             console.log(`${colors.magenta(name)} uploaded in ${colors.magenta(currentGuild)}!`)
 
@@ -74,7 +91,7 @@ module.exports = async (arguments) => {
         function promptUser() {
             return new Promise((resolve, reject) => {
                 const ask = () => rl.question(`There were results found for downloading files, would you like to use them? ${colors.magenta('[y/n]')} `, (answer) => {
-                    const yes = answer == "y" || answer == "yes" || answer == "n" || answer == "no"
+                    const yes = answer == 'y' || answer == 'yes' || answer == 'n' || answer == 'no'
                     if (!yes) return ask()
 
                     rl.close()
@@ -86,7 +103,7 @@ module.exports = async (arguments) => {
         }
 
         const answer = await promptUser()
-        const yes = answer == "yes" || answer == "y"
+        const yes = answer == 'yes' || answer == 'y'
         if (yes) {
             let emojis = require(resolvePath('../results/download.json'))
 
