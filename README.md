@@ -100,6 +100,3 @@ Name: happy ID: 475190125173932032 Code: <:happy:475190125173932032>
 Name: wobble ID: 494229933078478858 Code: <a:wobble:494229933078478858>
 Name: dab ID: 523766340251680781 Code: <a:dab:523766340251680781>
 ```
-
-## Support
-If you need help don't hesitate to [join my discord](https://goodbyepavlyi.eu/go/discord) and ask for help.
